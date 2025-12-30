@@ -23,9 +23,9 @@
     "copy-license": "ncp 'LICENSE' 'dist/LICENSE'",
     "clean-dist": "rimraf dist",
     "clean-target": "rimraf target",
-    "install-urcap": "install-urcap 'target/jodell-claw-control*.urcapx' '../../../manifest-spec-19.6.12.json'",
+    "install-urcap": "install-urcap 'target/jodell-claw-control*.urcapx' '../../manifest-spec-19.6.12.json'",
     "delete-urcap": "delete-urcap jodell jodell-claw-control",
-    "validate-manifest": "validate-manifest 'manifest.yaml' '../../../manifest-spec-19.6.12.json'"
+    "validate-manifest": "validate-manifest 'manifest.yaml' '../../manifest-spec-19.6.12.json'"
   },
   "private": true,
   "devDependencies": {
