@@ -1,0 +1,43 @@
+{
+  "name": "jodell-claw-control",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npm run start --prefix jodell-claw-control-frontend",
+    "install-frontend": "npm install --prefix jodell-claw-control-frontend",
+    "install-backend": "npm install --prefix jodell-claw-control-backend",
+    "lint": "npm run lint --prefix jodell-claw-control-frontend",
+    "build-frontend": "npm run build --prefix jodell-claw-control-frontend",
+    "copy-frontend": "ncp 'jodell-claw-control-frontend/dist' 'dist'",
+    "write-sbom": "npm run write-sbom-frontend",
+    "write-sbom-frontend": "write-ur-packages ./jodell-claw-control-frontend/package-lock.json dist",
+    "copy-backend": "ncp 'jodell-claw-control-backend/dist' dist/jodell-claw-control-backend",
+    "build-backend": "npm run build --prefix jodell-claw-control-backend",
+    "prebuild": "npm run clean-dist && npm run clean-target && npm run validate-manifest",
+    "build-arm": "export ARCH=linux/arm64 && npm run build",
+    "postinstall": "npm run install-frontend && npm run install-backend",
+    "build": "npm run build-backend && npm run build-frontend",
+    "prepackage": "mkdir dist && npm run copy-backend && npm run copy-frontend && npm run copy-manifest && npm run copy-license && npm run write-sbom",
+    "postbuild": "npm run package",
+    "package": "package-urcap dist target",
+    "copy-manifest": "ncp 'manifest.yaml' 'dist/manifest.yaml'",
+    "copy-license": "ncp 'LICENSE' 'dist/LICENSE'",
+    "clean-dist": "rimraf dist",
+    "clean-target": "rimraf target",
+    "install-urcap": "install-urcap 'target/jodell-claw-control*.urcapx' '../../../manifest-spec-19.6.12.json'",
+    "delete-urcap": "delete-urcap jodell jodell-claw-control",
+    "validate-manifest": "validate-manifest 'manifest.yaml' '../../../manifest-spec-19.6.12.json'"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^22.8.4",
+    "@universal-robots/urcap-utils": "1.6.4",
+    "cpy-cli": "3.1.1",
+    "ncp": "2.0.0",
+    "raw-loader": "^4.0.2",
+    "rimraf": "5.0.7"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "node-polyfill-webpack-plugin": "^4.0.0"
+  }
+}

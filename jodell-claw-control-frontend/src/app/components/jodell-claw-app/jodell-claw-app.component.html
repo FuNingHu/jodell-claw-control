@@ -1,0 +1,61 @@
+<div *ngIf="applicationNode" class="component">
+    <div class="simulation">
+        <h3 style="margin-left: 10px; margin-bottom: 20px; ">Real</h3>
+        <ur-toggle-switch
+            [toggled]="this.applicationNode.isSimulation"
+            [labelPos]="'before'"
+            (handleToggle)="handleToggle()"
+        ></ur-toggle-switch>
+        <h3>Simulatio---</h3>
+    </div>
+    <div class="simulation">
+        <ur-dropdown
+            style="margin-left: 10px; margin-bottom: 20px;"
+            [disabled]="this.applicationNode.isSimulation"
+            [options]="options"
+            [label]="'application.nodes.jodell-jodell-claw-control-frontend-jodell-claw-app.baudrate' | translate"
+            [selectedOption]="this.applicationNode.baudrate"
+            (selectionChange)="this.applicationNode.baudrate = $event.toString(); saveNode()"
+        ></ur-dropdown>
+        <ur-dialog-input
+            style="margin-bottom: 20px;"
+            [type]="'number'"
+            [disabled]="this.applicationNode.isSimulation"
+            [label]="'application.nodes.jodell-jodell-claw-control-frontend-jodell-claw-app.identity' | translate"
+            [message]="'application.nodes.jodell-jodell-claw-control-frontend-jodell-claw-app.identityHelpText' | translate"
+            [validators]="[]"
+            [validation]="{required: true, min:1, max:255}"
+            (valueChanged)="this.applicationNode.gripperID = +$event; saveNode()"
+            [positiveDigitsOnly]="true"
+            [value]="applicationNode.gripperID.toString()"
+            unit="#"
+            [precision]="1"
+        ></ur-dialog-input>
+    </div>
+    <div class="section">
+        <ur-button (handleClick)="onCheckClick()" [disabled]="this.applicationNode.isSimulation">Check Enable</ur-button>
+        <p>Response is: {{ response | async }}</p>
+        <ur-button (handleClick)="onOpenPortClick()" [disabled]="this.applicationNode.isSimulation">Open Port</ur-button>
+        <p>Open Port Result: {{ openPortResult | async }}</p>
+        <div class="enable">
+            <ur-button (handleClick)="onEnableClick()" [disabled]="this.applicationNode.isSimulation">Enable Claw</ur-button>
+            <span> </span>
+            <ur-button (handleClick)="onDisableClick()" [disabled]="this.applicationNode.isSimulation">Disable Claw</ur-button>
+        </div>
+        <p>Enable Claw Result: {{ enableResult | async }}</p>
+        
+    </div>
+    
+    <!-- <ur class="list">
+        <li *ngFor="let item of heros; index as i; count as len; let ev = even; let od = odd; let f=first; let l=last; trackBy: trackByHero"
+            [class.even]="ev"
+            [class.odd]="od"
+        >
+            <p>index: {{ i }}</p>
+            <p>count: {{ len }}</p>
+            <p>name: {{item.name}}</p>
+            <p>first: {{ f }} -- last: {{ l }}</p>
+            <hr>
+        </li>
+    </ur> -->
+</div>

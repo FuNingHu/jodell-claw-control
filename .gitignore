@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+jodell-claw-control-frontend/node_modules/
+jodell-claw-control-backend/node_modules/
+
+# Build outputs
+dist/
+target/*.urcapx
+
+# Lock files (optional - some teams commit these)
+# package-lock.json
+# jodell-claw-control-frontend/package-lock.json
+# jodell-claw-control-backend/package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+.cache/
+

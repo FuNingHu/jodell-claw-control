@@ -1,0 +1,15 @@
+@import '../../../styles.scss';
+
+
+.component {
+  
+  .section {
+    padding: 0.5rem 0.5rem 1rem;
+  }
+  .enable, .simulation {
+    display: flex;
+    gap: 10px;
+    max-width: 150px;
+  }
+  
+}

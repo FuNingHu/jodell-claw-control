@@ -1,0 +1,7 @@
+def fnc_add(a, b):
+    return a+b
+end
+
+def fnc_minus(a, b):
+    return a-b
+end

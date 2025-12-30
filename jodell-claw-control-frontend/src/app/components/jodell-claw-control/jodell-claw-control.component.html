@@ -1,0 +1,76 @@
+<div *ngIf="contributedNode" class="inline-component">
+    <span>Jodell Control: </span>
+    <!-- <ur-radio-group
+        [value]="this.contributedNode.option"
+        (radioChange)="this.contributedNode.option = $event.value; saveNode()"
+    >
+    <ur-radio-button *ngFor="let option of options" 
+        [value]="option"
+        
+        > {{ option }} </ur-radio-button>
+    </ur-radio-group> -->
+    
+    <ur-dialog-input
+        [type]="'number'"
+        [disabled]="false"
+        [label]="'presenter.jodell-claw.label.position' | translate"
+        [message]="'presenter.jodell-claw.label.positionHelpText' | translate"
+        [validators]="[]"
+        [validation]="{required: true, min:0, max:100}"
+        (valueChanged)="this.contributedNode.position = $event; saveNode()"
+        [positiveDigitsOnly]="true"
+        [value]="contributedNode.position.toString()"
+        unit="%"
+        precision="1"
+    ></ur-dialog-input>
+    <ur-dialog-input
+        [type]="'number'"
+        [disabled]="false"
+        [label]="'presenter.jodell-claw.label.speed' | translate"
+        [message]="'presenter.jodell-claw.label.speedHelpText' | translate"
+        [validators]="[]"
+        [validation]="{required: true, min:0, max:100}"
+        (valueChanged)="this.contributedNode.speed = $event; saveNode()"
+        [positiveDigitsOnly]="true"
+        [value]="contributedNode.speed.toString()"
+        unit="%"
+        precision="1"
+    ></ur-dialog-input>
+    <ur-dialog-input
+        [type]="'number'"
+        [disabled]="false"
+        [label]="'presenter.jodell-claw.label.force' | translate"
+        [message]="'presenter.jodell-claw.label.forceHelpText' | translate"
+        [validators]="[]"
+        [validation]="{required: true, min:0, max:100}"
+        (valueChanged)="this.contributedNode.force = $event; saveNode()"
+        [positiveDigitsOnly]="true"
+        [value]="contributedNode.force.toString()"
+        unit="%"
+        precision="1"
+    ></ur-dialog-input>
+    <ur-button
+        (handleClick)="onMoveClick()"
+        type="cta"
+        [disabled]="false" 
+        icon="move"
+        iconAlign="left"
+        active="true"
+    >Move</ur-button>
+
+    <ur-dialog-input
+        [type]="'number'"
+        [disabled]="false"
+        [label]="'presenter.jodell-claw.label.waittime' | translate"
+        [message]="'presenter.jodell-claw.label.waittimeHelpText' | translate"
+        [validators]="[]"
+        [validation]="{required: true, min:0.5, max:30}"
+        (valueChanged)="this.contributedNode.waittime = $event; saveNode()"
+        [positiveDigitsOnly]="true"
+        [value]="contributedNode.waittime.toString()"
+        unit="sec"
+        precision="1"
+    ></ur-dialog-input>
+
+        
+</div>

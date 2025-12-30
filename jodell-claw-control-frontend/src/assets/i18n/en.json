@@ -1,0 +1,59 @@
+{
+  "program": {
+    "tree": {
+      "nodes": {
+        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell Claw Control"
+      }
+    }
+  },
+  "application": {
+    "nodes": {
+      "jodell-jodell-claw-control-frontend-jodell-claw-app": {
+        "title": "Jodell Claw App",
+        "supportiveText": "Jodell Claw App - Supportive Text",
+        "simulation": "Simulation",
+        "baudrate": "Baudrate",
+        "identity": "ID",
+        "identityHelpText": "Specify claw station ID 1-255, default 9",
+        "- Select -": "- Select -"
+      }
+    }
+  },
+  "smart_skills":{
+    "universal-robots-contribution-jodell-smart-skill":{
+      "title": "Jodell Initial",
+      "baudrate": "Baudrate",
+      "identity": "ID",
+      "identityHelpText": "Specify claw station ID 1-255, default 9",
+      "- Select -": "- Select -"
+    },
+    "universal-robots-contribution-jodell-smart-skill-open":{
+      "title":"Jodell Open"
+    }
+  },
+  "operator-screen": {
+    "universal-robots-contribution-samples-sample-operator-screen": {
+      "title": "Sample Operator Screen"
+    }
+  },
+  "system-info": {
+    "universal-robots-contribution-samples-sample-system-info-node": "Jodell System Info Node"
+  },
+  "presenter":{
+    "jodell-claw":{
+      "label":{
+        "description": "Jodell Gripper Collaborate China event demo.",
+        "grip": "Grip",
+        "release": "Release",
+        "force": "Force",
+        "speed": "Speed",
+        "position": "Position",
+        "positionHelpText": "Specify position value",
+        "speedHelpText": "Specify speed value",
+        "forceHelpText": "Specify force value",
+        "waittime":"Wait Time",
+        "waittimeHelpText": "Specify wait time"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "jodell-claw-control-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "prebuild": "npm run generatepath",
+    "build": "ng build --configuration=production",
+    "lint": "ng lint",
+    "generatepath": "generate-manifest-constants ../manifest.yaml"
+  },
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@angular/animations": "19.2.4",
+    "@angular/cdk": "19.2.7",
+    "@angular/common": "19.2.4",
+    "@angular/compiler": "19.2.4",
+    "@angular/core": "19.2.4",
+    "@angular/elements": "19.2.4",
+    "@angular/platform-browser": "19.2.4",
+    "@angular/platform-browser-dynamic": "19.2.4",
+    "@angular/router": "19.2.4",
+    "@ngx-translate/core": "15.0.0",
+    "@universal-robots/ui-angular-components": "4.1.0",
+    "ngx-translate-multi-http-loader": "17.0.0",
+    "rxjs": "7.8.1",
+    "zone.js": "0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "19.2.4",
+    "@angular-eslint/builder": "~19.3.0",
+    "@angular-eslint/eslint-plugin": "~19.3.0",
+    "@angular-eslint/eslint-plugin-template": "~19.3.0",
+    "@angular-eslint/schematics": "~19.3.0",
+    "@angular-eslint/template-parser": "~19.3.0",
+    "@angular/cli": "19.2.4",
+    "@angular/compiler-cli": "19.2.4",
+    "@angular/language-service": "19.2.4",
+    "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "@universal-robots/contribution-api": "48.4.3",
+    "@universal-robots/designtokens": "0.17.0",
+    "@universal-robots/ui-models": "0.34.0",
+    "@universal-robots/urcap-utils": "1.6.4",
+    "@universal-robots/utilities-units": "5.12.0",
+    "eslint": "8.57.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ngx-build-plus": "^19.0.0",
+    "typescript": "5.7.3",
+    "jszip": "3.10.1"
+  },
+  "peerDependencies": {
+    "domhandler": "5.0.3"
+  }
+}

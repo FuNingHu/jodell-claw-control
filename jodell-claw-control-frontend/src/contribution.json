@@ -1,0 +1,62 @@
+{
+  "applicationNodes": [
+    {
+      "translationPath": "assets/i18n/",
+      "behaviorURI": "jodell-claw-app.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "jodell-jodell-claw-control-frontend-jodell-claw-app"
+    }
+  ],
+  "programNodes": [
+    {
+      "excludeFromToolbox": false,
+      "translationPath": "assets/i18n/",
+      "iconURI": "assets/icons/arrow-fat-right.svg",
+      "behaviorURI": "jodell-claw-control.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "jodell-jodell-claw-control-frontend-jodell-claw-control"
+    }
+  ],
+  "smartSkills": [
+    {
+      "name": "universal-robots-contribution-jodell-smart-skill",
+      "iconURI": "assets/icons/arrow-fat-right.svg",
+      "presenterURI": "main.js",
+      "componentTagName": "universal-robots-contribution-jodell-smart-skill",
+      "behaviorURI": "jodell-smart-skill.worker.js",
+      "translationPath": "assets/i18n/"
+    },
+    {
+      "name":"universal-robots-contribution-jodell-smart-skill-open",
+      "iconURI":"assets/icons/arrows-out-line-horizontal.svg",
+      "presenterURI":"main.js",
+      "componentTagName":"universal-robots-contribution-jodell-smart-skill-open",
+      "behaviorURI":"jodell-smart-skill-open.worker.js",
+      "translationPath":"assets/i18n/"
+    },
+    {
+      "name":"universal-robots-contribution-jodell-smart-skill-close",
+      "iconURI":"assets/icons/arrows-in-line-horizontal.svg",
+      "presenterURI":"main.js",
+      "componentTagName":"universal-robots-contribution-jodell-smart-skill-close",
+      "behaviorURI":"jodell-smart-skill-close.worker.js",
+      "translationPath":"assets/i18n/"
+    }
+  ],
+  "operatorScreens": [
+    {
+      "translationPath": "assets/i18n/",
+      "behaviorURI": "sample-operator-screen.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "universal-robots-contribution-samples-sample-operator-screen",
+      "configurationComponentTagName": "universal-robots-contribution-samples-sample-operator-screen-configuration"
+    }
+  ],
+  "systemInfoNodes": [
+    {
+      "translationPath": "assets/i18n/",
+      "presenterURI": "main.js",
+      "componentTagName": "universal-robots-contribution-samples-sample-system-info-node"
+    }
+  ]
+}
