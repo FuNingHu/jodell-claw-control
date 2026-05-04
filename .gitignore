@@ -7,10 +7,10 @@ jodell-claw-control-backend/node_modules/
 dist/
 target/*.urcapx
 
-# Lock files (optional - some teams commit these)
-# package-lock.json
-# jodell-claw-control-frontend/package-lock.json
-# jodell-claw-control-backend/package-lock.json
+# Lock files (do not commit)
+package-lock.json
+jodell-claw-control-frontend/package-lock.json
+jodell-claw-control-backend/package-lock.json
 
 # IDE
 .vscode/
