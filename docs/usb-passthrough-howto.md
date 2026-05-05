@@ -87,11 +87,25 @@ if it is `-` (regular file) the kernel driver wasn't loaded. Run
 
 ## 3. Layer 2 — Forward the WSL device into the URSim container
 
+First, start URSim once so the runtime files are in place and the URSim
+container exists for later inspection:
+
+```bash
+./run-simulator --dev --port 45000
+```
+
+If `nano` is not installed in your devcontainer / WSL yet, install it now
+(skip this step if you already have an editor available):
+
+```bash
+sudo apt update && sudo apt install -y nano
+```
+
 Edit the URSim docker-compose file (path depends on where URSim was installed):
 
 ```bash
 # Typical path:
-sudo nano /ursim-polyscopex-<version>/artifacts/runtime/docker-compose.yml
+nano /ursim-polyscopex-0.xx.xx/artifacts/runtime/docker-compose.yml
 ```
 
 Inside the `services.runtime` block, add a top-level **`devices:`** key
@@ -108,6 +122,14 @@ services:
       ...                                             # leave existing volumes intact
 ```
 
+For example, with `<USB_DEV>=/dev/ttyUSB0` and `<TARGET_PATH>=/dev/ur-ttylink/ttyTool`,
+the device line becomes:
+
+```yaml
+    devices:
+      - /dev/ttyUSB0:/dev/ur-ttylink/ttyTool
+```
+
 **Why it must be `devices:` and not `volumes:`**
 
 - `volumes: /a:/b` — bind-mounts the node only; docker does **not** add a
@@ -121,10 +143,42 @@ When URSim is `privileged: true` the visible difference is small, but
 Restart URSim so the new mount takes effect:
 
 ```bash
-cd /ursim-polyscopex-<version>/artifacts/runtime
-docker compose down
-docker compose up -d
+./run-simulator --dev --port 45000 --reset
 ```
+
+### 3.1 Disable `URSERVICE_FAKEDEVICE` inside the URSim container
+
+1. On your host (not the devcontainer), find the URSim container ID:
+
+   ```bash
+   docker ps
+   ```
+
+2. Enter the URSim container:
+
+   ```bash
+   docker exec -it <CONTAINER_ID> bash
+   ```
+
+3. Install `nano`:
+
+   ```sh
+   apk update && apk add nano
+   ```
+
+4. Edit `/root/docker-compose.yaml`:
+
+   ```sh
+   nano /root/docker-compose.yaml
+   ```
+
+5. Under `urservice:`, set `URSERVICE_FAKEDEVICE=false`.
+
+6. Restart the simulator from inside the container:
+
+   ```sh
+   ./run.sh --reset
+   ```
 
 Verify inside the URSim container:
 
@@ -462,7 +516,7 @@ End-to-end in one go:
 # 1. Forward USB into URSim (one-time configuration)
 sudo sed -i '/^    privileged: true/a \    devices:\n      - "<USB_DEV>:<TARGET_PATH>"' \
     /ursim-polyscopex-<version>/artifacts/runtime/docker-compose.yml
-cd /ursim-polyscopex-<version>/artifacts/runtime && docker compose down && docker compose up -d
+./run-simulator --dev --port 45000 --reset
 
 # 2. Wait for URSim and the URCap backend to come up
 until docker exec <URSIM_NAME> docker inspect <BACKEND_NAME> >/dev/null 2>&1; do sleep 1; done
