@@ -271,18 +271,44 @@ def setStopId(value):
 	stopId = int(value)
 	return "OK"
 
-def tool_modbus_read(register_address):
+def tool_modbus_single_read(register_address):
 	try:
-		info = "error"
 		readBuf = master.execute(int(myId), cst.READ_HOLDING_REGISTERS, int(register_address), 1)
-		info = str(readBuf[0])
-		return info
+		return str(readBuf[0] & 0xFFFF)
 	except Exception as exc:
-		return "error"
+		return str(exc)
 
-def tool_modbus_write(register_address, data):
+
+def tool_modbus_multiple_read(register_address, count=1):
 	try:
-		master.execute(int(myId), cst.WRITE_SINGLE_REGISTER, int(register_address), output_value=int(data))
+		readBuf = master.execute(int(myId), cst.READ_HOLDING_REGISTERS, int(register_address), int(count))
+		return [str(value & 0xFFFF) for value in readBuf]
+	except Exception as exc:
+		return [str(exc)]
+
+
+def tool_modbus_single_write(register_address, data):
+	try:
+		master.execute(int(myId), cst.WRITE_SINGLE_REGISTER, int(register_address), output_value=int(data) & 0xFFFF)
+		return "OK"
+	except Exception as exc:
+		return str(exc)
+
+
+def tool_modbus_multiple_write(register_address, data, count=None):
+	try:
+		if isinstance(data, (list, tuple)):
+			values = [int(value) & 0xFFFF for value in data]
+		else:
+			values = [int(value.strip()) & 0xFFFF for value in str(data).split(",") if value.strip()]
+
+		if len(values) == 0:
+			return "No register values provided"
+
+		if count is not None and int(count) != len(values):
+			return "Count does not match register value length"
+
+		master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, int(register_address), output_value=values)
 		return "OK"
 	except Exception as exc:
 		return str(exc)
@@ -333,6 +359,8 @@ server.register_function(setMyId, "setMyId")
 server.register_function(setProgramState, "setProgramState")
 server.register_function(setStartId, "setStartId")
 server.register_function(setStopId, "setStopId")
-server.register_function(tool_modbus_read, "tool_modbus_read")
-server.register_function(tool_modbus_write, "tool_modbus_write")
+server.register_function(tool_modbus_multiple_read, "tool_modbus_multiple_read")
+server.register_function(tool_modbus_multiple_write, "tool_modbus_multiple_write")
+server.register_function(tool_modbus_single_read, "tool_modbus_single_read")
+server.register_function(tool_modbus_single_write, "tool_modbus_single_write")
 server.serve_forever()

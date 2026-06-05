@@ -23,3 +23,4 @@ artifacts:
   webArchives:
   - id: jodell-claw-control-frontend
     folder: jodell-claw-control-frontend
+    # devUrl: http://host.gateway.ip:4200/
