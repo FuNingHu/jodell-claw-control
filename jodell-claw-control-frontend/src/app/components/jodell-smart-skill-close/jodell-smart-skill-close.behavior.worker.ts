@@ -31,6 +31,8 @@ const behaviors: SmartSkillBehaviors = {
         const url = `servicegateway/${VENDOR_ID}/${URCAP_ID}/jodell-claw-control-backend/xmlrpc`;
         builder.assign('jodell_daemon',`rpc_factory("xmlrpc","${location.protocol}//${url}/")`);
         builder.addStatements('set_tool_voltage(24)');
+        // builder.addStatements('get_actual_tcp_pose()');
+        // builder.popup('socket ->);
         builder.addStatements(`set_tool_communication(True, ${applicationNode.baudrate}, 0, 1, 1.0, 3.5)`);
         builder.addStatements(`jodell_daemon.openMaster("/dev/ur-ttylink/ttyTool", "${applicationNode.baudrate}")`);
         builder.addStatements(`jodell_daemon.setMyId(${applicationNode.gripperID})`);

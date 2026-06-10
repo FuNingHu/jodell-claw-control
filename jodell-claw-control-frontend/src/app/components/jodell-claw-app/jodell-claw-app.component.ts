@@ -80,7 +80,8 @@ export class JodellClawAppComponent implements ApplicationPresenter, OnChanges {
             
             const url = this.applicationAPI.getContainerContributionURL(VENDOR_ID, URCAP_ID, 'jodell-claw-control-backend', 'xmlrpc');
             this.xmlrpc = new XmlRpcClient(`${location.protocol}//${url}/`);
-            // this.xmlrpc.methodCall('getMyId').then(res => console.log('application getMyId ngOnChange: ',res));
+            // this.programErrorResult = this.xmlrpc.methodCall('getProgramError', 2);
+            // this.programErrorResult.then(res => console.log('getProgramError: ',res));
             console.log(`application node gripperID: ${this.applicationNode.gripperID}`);
             console.log(`application node isSimulation: ${this.applicationNode.isSimulation}`);
         }

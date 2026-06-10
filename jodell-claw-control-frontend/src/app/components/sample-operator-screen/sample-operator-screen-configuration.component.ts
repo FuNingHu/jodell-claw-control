@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OperatorScreen, OperatorScreenConfigurationPresenter, OperatorScreenPresenterAPI, RobotSettings } from '@universal-robots/contribution-api';
+import { XmlRpcClient } from '../xmlrpc/xmlrpc-client';
 
 @Component({
     standalone: true,
@@ -12,4 +13,6 @@ export class SampleOperatorScreenConfigurationComponent implements OperatorScree
     @Input() presenterAPI: OperatorScreenPresenterAPI;
     @Input() robotSettings: RobotSettings;
     @Input() operatorScreen: OperatorScreen;
+
+    
 }

@@ -62,6 +62,7 @@ export class JodellClawControlComponent implements OnChanges, ProgramPresenter {
             //Changed
             // this.applicationNode = await this.presenterAPI.applicationService.getApplicationNode(`${VENDOR_ID}-${URCAP_ID}-frontend-${URCAP_ID}-application`) as JodellClawAppNode;
             this.applicationNode = await this.presenterAPI.applicationService.getApplicationNode(`jodell-jodell-claw-control-frontend-jodell-claw-app`) as JodellClawAppNode;
+            // console.log('applicationNode: ',this.applicationNode.isSimulation);
         }
     }
 
