@@ -1,0 +1,62 @@
+{
+  "program": {
+    "tree": {
+      "nodes": {
+        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell 夹爪控制"
+      }
+    }
+  },
+  "application": {
+    "nodes": {
+      "jodell-jodell-claw-control-frontend-jodell-claw-app": {
+        "title": "Jodell 夹爪应用",
+        "supportiveText": "Jodell 夹爪应用 - 辅助说明",
+        "simulation": "仿真",
+        "baudrate": "波特率",
+        "identity": "站号",
+        "identityHelpText": "指定夹爪站号 1-255，默认 9",
+        "- Select -": "- 请选择 -"
+      }
+    }
+  },
+  "smart_skills": {
+    "universal-robots-contribution-jodell-smart-skill": {
+      "title": "Jodell 初始化",
+      "baudrate": "波特率",
+      "identity": "站号",
+      "identityHelpText": "指定夹爪站号 1-255，默认 9",
+      "- Select -": "- 请选择 -"
+    },
+    "universal-robots-contribution-jodell-smart-skill-open": {
+      "title": "Jodell 张开"
+    },
+    "universal-robots-contribution-jodell-smart-skill-close": {
+      "title": "Jodell 闭合"
+    }
+  },
+  "operator-screen": {
+    "universal-robots-contribution-samples-sample-operator-screen": {
+      "title": "示例操作员界面"
+    }
+  },
+  "system-info": {
+    "universal-robots-contribution-samples-sample-system-info-node": "Jodell 系统信息节点"
+  },
+  "presenter": {
+    "jodell-claw": {
+      "label": {
+        "description": "Jodell 夹爪协作中国活动演示。",
+        "grip": "夹取",
+        "release": "释放",
+        "force": "力",
+        "speed": "速度",
+        "position": "位置",
+        "positionHelpText": "指定位置值",
+        "speedHelpText": "指定速度值",
+        "forceHelpText": "指定力值",
+        "waittime": "等待时间",
+        "waittimeHelpText": "指定等待时间"
+      }
+    }
+  }
+}

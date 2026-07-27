@@ -5,7 +5,7 @@ import { JodellClawAppNode } from '../jodell-claw-app/jodell-claw-app.node';
 
 const createSmartNode =(): OptionalPromise<JodellSmartSkillInstance> =>({
     type: 'universal-robots-contribution-jodell-smart-skill',
-    name: 'Jodell Initial',
+    name: 'Jodell Init',
     baudrate:'115200',
     gripperID: 9,
     enabled: true,

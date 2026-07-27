@@ -13,6 +13,5 @@ export class SampleOperatorScreenConfigurationComponent implements OperatorScree
     @Input() presenterAPI: OperatorScreenPresenterAPI;
     @Input() robotSettings: RobotSettings;
     @Input() operatorScreen: OperatorScreen;
-
     
 }

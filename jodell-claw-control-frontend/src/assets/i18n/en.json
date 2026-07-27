@@ -21,7 +21,7 @@
   },
   "smart_skills":{
     "universal-robots-contribution-jodell-smart-skill":{
-      "title": "Jodell Initial",
+      "title": "Jodell Initi",
       "baudrate": "Baudrate",
       "identity": "ID",
       "identityHelpText": "Specify claw station ID 1-255, default 9",
