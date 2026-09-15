@@ -25,6 +25,7 @@ export class JodellClawAppComponent implements ApplicationPresenter, OnChanges {
     response: Promise<string> | null = null;
     openPortResult: Promise<string> | null = null;
     enableResult: Promise<string> | null = null;
+    enableRagResult: Promise<string> | null = null;
     options = ["1200","2400","4800","9600","19200","38400","57600","115200"];
     
 
@@ -120,6 +121,20 @@ export class JodellClawAppComponent implements ApplicationPresenter, OnChanges {
         this.enableResult = this.xmlrpc.methodCall('disableClaw');
         this.enableResult.then(res => {
             console.log('enableResult: ',this.enableResult);
+            this.saveNode();
+        })
+    }
+    onRagEnableClick(): void{
+        this.enableRagResult = this.xmlrpc.methodCall('enableRag');
+        this.enableRagResult.then(res => {
+            console.log('enableRagResult: ',this.enableRagResult);
+            this.saveNode();
+        })
+    }
+    onRagDisableClick():void{
+        this.enableRagResult = this.xmlrpc.methodCall('disableRag');
+        this.enableRagResult.then(res => {
+            console.log('enableRagResult: ',this.enableRagResult);
             this.saveNode();
         })
     }

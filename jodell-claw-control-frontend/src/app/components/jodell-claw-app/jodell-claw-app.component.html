@@ -33,7 +33,15 @@
             <ur-button (handleClick)="onDisableClick()" [disabled]="this.applicationNode.isSimulation">Disable
                 Claw</ur-button>
         </div>
-        <p>Enable Claw Result: {{ enableResult | async }}</p> 
+        <p>Enable Claw Result: {{ enableResult | async }}</p>
+        <div class="rag enable">
+            <ur-button (handleClick)="onRagEnableClick()" [disabled]="this.applicationNode.isSimulation">Enable
+                Rag</ur-button>
+            <span> </span>
+            <ur-button (handleClick)="onRagDisableClick()" [disabled]="this.applicationNode.isSimulation">Disable
+                Rag</ur-button>
+        </div>
+        <p>Enable Rag Result: {{ enableRagResult | async }}</p>
     </div>
 
     <!-- <ur class="list">

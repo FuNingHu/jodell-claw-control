@@ -2,7 +2,9 @@
   "program": {
     "tree": {
       "nodes": {
-        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell Claw Control"
+        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell Claw Control",
+        "jodell-jodell-claw-control-frontend-jodell-sucker-control": "Jodell Sucker Control",
+        "jodell-jodell-claw-control-frontend-jodell-rag-control": "Jodell Rag Control"
       }
     }
   },
@@ -29,6 +31,18 @@
     },
     "universal-robots-contribution-jodell-smart-skill-open":{
       "title":"Jodell Open"
+    },
+    "universal-robots-contribution-jodell-smart-skill-close":{
+      "title":"Jodell Close"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-init":{
+      "title": "Jodell Rag Init"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-open":{
+      "title":"Jodell Rag Open"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-close":{
+      "title":"Jodell Rag Close"
     }
   },
   "operator-screen": {
@@ -52,6 +66,47 @@
         "speedHelpText": "Specify speed value",
         "forceHelpText": "Specify force value",
         "waittime":"Wait Time",
+        "waittimeHelpText": "Specify wait time"
+      }
+    },
+    "jodell-rag": {
+      "label": {
+        "description": "Jodell Gripper Collaborate China event demo.",
+        "grip": "Grip",
+        "release": "Release",
+        "force": "Force",
+        "speed": "Speed",
+        "position": "Position",
+        "positionHelpText": "Specify position value",
+        "speedHelpText": "Specify speed value",
+        "forceHelpText": "Specify force value",
+        "waittime": "Wait Time",
+        "waittimeHelpText": "Specify wait time"
+      }
+    },
+    "jodell-sucker": {
+      "label": {
+        "description": "Jodell Gripper Collaborate China event demo.",
+        "grip": "Grip",
+        "release": "Release",
+        "position": "Start-stop",
+        "positionHelpText": "Specify start-stop value",
+        "waittime": "Wait Time",
+        "waittimeHelpText": "Specify wait time"
+      }
+    },
+    "jodell-ragstate": {
+      "label": {
+        "description": "Jodell Gripper Collaborate China event demo.",
+        "grip": "Grip",
+        "release": "Release",
+        "force": "Force",
+        "speed": "Speed",
+        "position": "Position",
+        "positionHelpText": "Specify position value",
+        "speedHelpText": "Specify speed value",
+        "forceHelpText": "Specify force value",
+        "waittime": "Wait Time",
         "waittimeHelpText": "Specify wait time"
       }
     }

@@ -15,6 +15,22 @@
       "behaviorURI": "jodell-claw-control.worker.js",
       "presenterURI": "main.js",
       "componentTagName": "jodell-jodell-claw-control-frontend-jodell-claw-control"
+    },
+    {
+      "excludeFromToolbox": false,
+      "translationPath": "assets/i18n/",
+      "iconURI": "assets/icons/arrow-fat-right.svg",
+      "behaviorURI": "jodell-sucker-control.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "jodell-jodell-claw-control-frontend-jodell-sucker-control"
+    },
+    {
+      "excludeFromToolbox": false,
+      "translationPath": "assets/i18n/",
+      "iconURI": "assets/icons/arrow-fat-right.svg",
+      "behaviorURI": "jodell-rag-control.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "jodell-jodell-claw-control-frontend-jodell-rag-control"
     }
   ],
   "smartSkills": [
@@ -40,6 +56,30 @@
       "presenterURI":"main.js",
       "componentTagName":"universal-robots-contribution-jodell-smart-skill-close",
       "behaviorURI":"jodell-smart-skill-close.worker.js",
+      "translationPath":"assets/i18n/"
+    },
+    {
+      "name":"universal-robots-contribution-jodell-smart-skill-rag-init",
+      "iconURI": "assets/icons/arrow-fat-right.svg",
+      "presenterURI":"main.js",
+      "componentTagName":"universal-robots-contribution-jodell-smart-skill-rag-init",
+      "behaviorURI":"jodell-smart-skill-rag-init.worker.js",
+      "translationPath":"assets/i18n/"
+    },
+    {
+      "name":"universal-robots-contribution-jodell-smart-skill-rag-open",
+      "iconURI":"assets/icons/arrows-out-line-horizontal.svg",
+      "presenterURI":"main.js",
+      "componentTagName":"universal-robots-contribution-jodell-smart-skill-rag-open",
+      "behaviorURI":"jodell-smart-skill-rag-open.worker.js",
+      "translationPath":"assets/i18n/"
+    },
+    {
+      "name":"universal-robots-contribution-jodell-smart-skill-rag-close",
+      "iconURI":"assets/icons/arrows-in-line-horizontal.svg",
+      "presenterURI":"main.js",
+      "componentTagName":"universal-robots-contribution-jodell-smart-skill-rag-close",
+      "behaviorURI":"jodell-smart-skill-rag-close.worker.js",
       "translationPath":"assets/i18n/"
     }
   ],

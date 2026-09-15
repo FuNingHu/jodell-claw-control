@@ -2,7 +2,9 @@
   "program": {
     "tree": {
       "nodes": {
-        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell 夹爪控制"
+        "jodell-jodell-claw-control-frontend-jodell-claw-control": "Jodell 夹爪控制",
+        "jodell-jodell-claw-control-frontend-jodell-sucker-control": "Jodell 吸盘控制",
+        "jodell-jodell-claw-control-frontend-jodell-rag-control": "Jodell Rag 控制"
       }
     }
   },
@@ -32,6 +34,15 @@
     },
     "universal-robots-contribution-jodell-smart-skill-close": {
       "title": "Jodell 闭合"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-init": {
+      "title": "Jodell Rag 初始化"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-open": {
+      "title": "Jodell Rag 张开"
+    },
+    "universal-robots-contribution-jodell-smart-skill-rag-close": {
+      "title": "Jodell Rag 闭合"
     }
   },
   "operator-screen": {
@@ -44,6 +55,47 @@
   },
   "presenter": {
     "jodell-claw": {
+      "label": {
+        "description": "Jodell 夹爪协作中国活动演示。",
+        "grip": "夹取",
+        "release": "释放",
+        "force": "力",
+        "speed": "速度",
+        "position": "位置",
+        "positionHelpText": "指定位置值",
+        "speedHelpText": "指定速度值",
+        "forceHelpText": "指定力值",
+        "waittime": "等待时间",
+        "waittimeHelpText": "指定等待时间"
+      }
+    },
+    "jodell-rag": {
+      "label": {
+        "description": "Jodell 夹爪协作中国活动演示。",
+        "grip": "夹取",
+        "release": "释放",
+        "force": "力",
+        "speed": "速度",
+        "position": "位置",
+        "positionHelpText": "指定位置值",
+        "speedHelpText": "指定速度值",
+        "forceHelpText": "指定力值",
+        "waittime": "等待时间",
+        "waittimeHelpText": "指定等待时间"
+      }
+    },
+    "jodell-sucker": {
+      "label": {
+        "description": "Jodell 夹爪协作中国活动演示。",
+        "grip": "夹取",
+        "release": "释放",
+        "position": "启停",
+        "positionHelpText": "指定启停值",
+        "waittime": "等待时间",
+        "waittimeHelpText": "指定等待时间"
+      }
+    },
+    "jodell-ragstate": {
       "label": {
         "description": "Jodell 夹爪协作中国活动演示。",
         "grip": "夹取",

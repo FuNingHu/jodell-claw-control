@@ -42,6 +42,28 @@ clawStateEn = {
 	3:"In place"
 }
 
+ragStateZn = {
+	1:"到位",
+	2:"受阻"
+}
+
+ragStateEn = {
+	1:"In place",
+	2:"Blocking"
+}
+
+evsStateZn = {
+	0:"低于最低气压",
+	1:"检测到工件",
+	2:"未检测到工件"
+}
+
+evsStateEn = {
+	0:"Below the minimum air pressure",
+	1:"Detected workpiece",
+	2:"No workpiece detected",
+}
+
 
 # ---------------------------------------------------------------------------
 # RPC functions (alphabetical order)
@@ -271,6 +293,109 @@ def setStopId(value):
 	stopId = int(value)
 	return "OK"
 
+def controlRag(pos, speed, torque):  #执行命令
+    try:
+        sendCmdBuf = [int(pos), int(speed), int(torque)]
+        master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x7002, output_value=sendCmdBuf)
+        sendCmdBuf1 = [0x05]
+        master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x7001, output_value=sendCmdBuf1)
+        return "OK"
+    except Exception as exc:
+        return str(exc)
+
+def disableRag():  #禁用设备
+	try:
+		global activateState
+		sendCmdBuf = [0x00]
+		master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x7001, output_value=sendCmdBuf)
+		activateState = "false"
+		return "OK"
+	except Exception as exc:
+		return str(exc)
+
+def enableRag(): #激活设备
+	try:
+		global activateState
+		sendCmdBuf = [0x03]
+		master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x7001, output_value=sendCmdBuf)
+		activateState = "true"
+		return "OK"
+	except Exception as exc:
+		return str(exc)
+
+def readEvsStatus(status, language, timeout):
+	startTime = time.time()
+	try:
+		info = "error"
+		while True:
+			readBuf = master.execute(int(myId), cst.READ_INPUT_REGISTERS, 2000, 1)
+			newTime = time.time()
+			curState = ((readBuf[0] & 0xff) >> 6) & 0x03
+			if curState > 2:
+				curState -= 1
+			if abs(newTime - startTime) > float(timeout):
+				if language == "2":
+					info = "State error, Current state:{}, Target state:{}".format(evsStateEn[curState], evsStateEn[int(status)])
+				else:
+					info = "状态错误,当前状态:{},目标状态:{}".format(evsStateZn[curState], evsStateZn[int(status)])
+				break
+			if int(status) == curState:
+				info = "OK"
+				break
+		return info
+	except Exception as exc:
+		return str(exc)
+
+def readRagState(state, timeout): #读到位状态 “error” "OK"
+	startTime = time.time()
+	try:
+		if int(state) == 0:
+			return "OK"
+		info = "error"
+		while True:
+			readBuf = master.execute(int(myId), cst.READ_HOLDING_REGISTERS, 0x6001, 1)
+			newTime = time.time()
+			curState = readBuf[0] - 3
+			if abs(newTime - startTime) > float(timeout):
+				break
+			if int(state) == curState:
+				info = "OK"
+				break
+		return info
+	except Exception as exc:
+		return str(exc)
+
+def setEvsParams(maxPressure, timeout, minPressure):
+	try:
+		sendCmdBuf = [0x00, 0x00]
+		maxVacumm= 100 - int(maxPressure)
+		minVacumm = 100 - int(minPressure)
+		setTime = int(round(float(timeout), 1) * 10)
+		sendCmdBuf[0] = maxVacumm << 8
+		sendCmdBuf[1] = (minVacumm << 8) | (setTime & 0xff)
+		master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x03E9, output_value=sendCmdBuf)
+		reVal = "OK"
+	except Exception as exc:
+		reVal = str(exc)
+	return reVal
+
+def startOrStopDevice(state):
+	try:
+		sendCmdBuf = [0x0B] if int(state) == 1 else [0x03]
+		master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x03E8, output_value=sendCmdBuf)
+		reVal = "OK"
+	except Exception as exc:
+		reVal = str(exc)
+	return reVal
+
+def stopRag():  #执行命令
+    try:
+        sendCmdBuf = [0x81]
+        master.execute(int(myId), cst.WRITE_MULTIPLE_REGISTERS, 0x7001, output_value=sendCmdBuf)
+        return "OK"
+    except Exception as exc:
+        return str(exc)
+
 def tool_modbus_single_read(register_address):
 	try:
 		readBuf = master.execute(int(myId), cst.READ_HOLDING_REGISTERS, int(register_address), 1)
@@ -331,9 +456,12 @@ server.RequestHandlerClass.protocol_version = "HTTP/1.1"
 
 # RPC registrations (alphabetical order, matches the function definitions above)
 server.register_function(closeMaster, "closeMaster")
+server.register_function(controlRag, "controlRag")
 server.register_function(disableClaw, "disableClaw")
+server.register_function(disableRag, "disableRag")
 server.register_function(doCmd, "doCmd")
 server.register_function(enableClaw, "enableClaw")
+server.register_function(enableRag, "enableRag")
 server.register_function(getActivateState, "getActivateState")
 server.register_function(getComError, "getComError")
 server.register_function(getComOperationError, "getComOperationError")
@@ -350,15 +478,20 @@ server.register_function(initScanId, "initScanId")
 server.register_function(jd_add, "jd_add")
 server.register_function(openMaster, "openMaster")
 server.register_function(readActivateStatus, "readActivateStatus")
+server.register_function(readEvsStatus, "readEvsStatus")
 server.register_function(readInPlaceStatus, "readInPlaceStatus")
+server.register_function(readRagState, "readRagState")
 server.register_function(repeatReadActivateState, "repeatReadActivateState")
 server.register_function(searchCom, "searchCom")
 server.register_function(searchId, "searchId")
 server.register_function(setActivateState, "setActivateState")
+server.register_function(setEvsParams, "setEvsParams")
 server.register_function(setMyId, "setMyId")
 server.register_function(setProgramState, "setProgramState")
 server.register_function(setStartId, "setStartId")
 server.register_function(setStopId, "setStopId")
+server.register_function(startOrStopDevice, "startOrStopDevice")
+server.register_function(stopRag, "stopRag")
 server.register_function(tool_modbus_multiple_read, "tool_modbus_multiple_read")
 server.register_function(tool_modbus_multiple_write, "tool_modbus_multiple_write")
 server.register_function(tool_modbus_single_read, "tool_modbus_single_read")

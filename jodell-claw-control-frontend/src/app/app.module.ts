@@ -1,5 +1,7 @@
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { JodellClawControlComponent } from './components/jodell-claw-control/jodell-claw-control.component';
+import { JodellSuckerControlComponent } from './components/jodell-sucker-control/jodell-sucker-control.component';
+import { JodellRagControlComponent } from './components/jodell-rag-control/jodell-rag-control.component';
 import { JodellClawAppComponent } from './components/jodell-claw-app/jodell-claw-app.component';
 import { UIAngularComponentsModule } from '@universal-robots/ui-angular-components';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +18,9 @@ import { SampleOperatorScreenConfigurationComponent } from './components/sample-
 import { JodellSystemInfoNodeComponent } from './components/jodell-system-info/jodell-system-info-node.component';
 import { JodellSmartSkillOpenComponent } from './components/jodell-smart-skill-open/jodell-smart-skill-open.component';
 import { JodellSmartSkillCloseComponent } from './components/jodell-smart-skill-close/jodell-smart-skill-close.component';
+import { JodellSmartSkillRagInitComponent } from './components/jodell-smart-skill-rag-init/jodell-smart-skill-rag-init.component';
+import { JodellSmartSkillRagOpenComponent } from './components/jodell-smart-skill-rag-open/jodell-smart-skill-rag-open.component';
+import { JodellSmartSkillRagCloseComponent } from './components/jodell-smart-skill-rag-close/jodell-smart-skill-rag-close.component';
 
 export const httpLoaderFactory = (http: HttpBackend) =>
     new MultiTranslateHttpLoader(http, [
@@ -26,6 +31,8 @@ export const httpLoaderFactory = (http: HttpBackend) =>
 @NgModule({
     declarations: [
         JodellClawControlComponent,
+        JodellSuckerControlComponent,
+        JodellRagControlComponent,
         JodellClawAppComponent,
         JodellSmartSkillComponent
     ],
@@ -49,6 +56,10 @@ export class AppModule implements DoBootstrap {
     ngDoBootstrap() {
         const jodellclawcontrolComponent = createCustomElement(JodellClawControlComponent, {injector: this.injector});
         customElements.define('jodell-jodell-claw-control-frontend-jodell-claw-control', jodellclawcontrolComponent);
+        const jodellsuckercontrolComponent = createCustomElement(JodellSuckerControlComponent, {injector: this.injector});
+        customElements.define('jodell-jodell-claw-control-frontend-jodell-sucker-control', jodellsuckercontrolComponent);
+        const jodellragcontrolComponent = createCustomElement(JodellRagControlComponent, {injector: this.injector});
+        customElements.define('jodell-jodell-claw-control-frontend-jodell-rag-control', jodellragcontrolComponent);
         const jodellclawappComponent = createCustomElement(JodellClawAppComponent, {injector: this.injector});
         customElements.define('jodell-jodell-claw-control-frontend-jodell-claw-app', jodellclawappComponent);
         const jodellsmartskillComponent = createCustomElement(JodellSmartSkillComponent, {injector: this.injector});
@@ -57,6 +68,12 @@ export class AppModule implements DoBootstrap {
         customElements.define('universal-robots-contribution-jodell-smart-skill-open', jodellsmartskillopenComponent);
         const jodellsmartskillcloseComponent = createCustomElement(JodellSmartSkillCloseComponent, {injector: this.injector});
         customElements.define('universal-robots-contribution-jodell-smart-skill-close', jodellsmartskillcloseComponent);
+        const jodellsmartskillraginitComponent = createCustomElement(JodellSmartSkillRagInitComponent, {injector: this.injector});
+        customElements.define('universal-robots-contribution-jodell-smart-skill-rag-init', jodellsmartskillraginitComponent);
+        const jodellsmartskillragopenComponent = createCustomElement(JodellSmartSkillRagOpenComponent, {injector: this.injector});
+        customElements.define('universal-robots-contribution-jodell-smart-skill-rag-open', jodellsmartskillragopenComponent);
+        const jodellsmartskillragcloseComponent = createCustomElement(JodellSmartSkillRagCloseComponent, {injector: this.injector});
+        customElements.define('universal-robots-contribution-jodell-smart-skill-rag-close', jodellsmartskillragcloseComponent);
         const sampleOperatorScreenComponent = createCustomElement(SampleOperatorScreenComponent, { injector: this.injector });
         customElements.define('universal-robots-contribution-samples-sample-operator-screen', sampleOperatorScreenComponent);
         const sampleOperatorScreenConfigurationComponent = createCustomElement(SampleOperatorScreenConfigurationComponent, { injector: this.injector });
@@ -77,6 +94,16 @@ export class AppModule implements DoBootstrap {
             name: 'jodell-claw-control',
             type: 'module'
         });
+        new Worker(new URL('./components/jodell-sucker-control/jodell-sucker-control.behavior.worker.ts'
+            /* webpackChunkName: "jodell-sucker-control.worker" */, import.meta.url), {
+            name: 'jodell-sucker-control',
+            type: 'module'
+        });
+        new Worker(new URL('./components/jodell-rag-control/jodell-rag-control.behavior.worker.ts'
+            /* webpackChunkName: "jodell-rag-control.worker" */, import.meta.url), {
+            name: 'jodell-rag-control',
+            type: 'module'
+        });
         new Worker(new URL('./components/jodell-smart-skill/jodell-smart-skill.behavior.worker.ts'
             /* webpackChunkName: "jodell-smart-skill.worker" */, import.meta.url), {
             name: 'jodell-smart-skill',
@@ -90,6 +117,21 @@ export class AppModule implements DoBootstrap {
         new Worker(new URL('./components/jodell-smart-skill-close/jodell-smart-skill-close.behavior.worker.ts'
             /* webpackChunkName: "jodell-smart-skill-close.worker" */, import.meta.url), {
             name: 'jodell-smart-skill-close',
+            type: 'module'
+        });
+        new Worker(new URL('./components/jodell-smart-skill-rag-init/jodell-smart-skill-rag-init.behavior.worker.ts'
+            /* webpackChunkName: "jodell-smart-skill-rag-init.worker" */, import.meta.url), {
+            name: 'jodell-smart-skill-rag-init',
+            type: 'module'
+        });
+        new Worker(new URL('./components/jodell-smart-skill-rag-open/jodell-smart-skill-rag-open.behavior.worker.ts'
+            /* webpackChunkName: "jodell-smart-skill-rag-open.worker" */, import.meta.url), {
+            name: 'jodell-smart-skill-rag-open',
+            type: 'module'
+        });
+        new Worker(new URL('./components/jodell-smart-skill-rag-close/jodell-smart-skill-rag-close.behavior.worker.ts'
+            /* webpackChunkName: "jodell-smart-skill-rag-close.worker" */, import.meta.url), {
+            name: 'jodell-smart-skill-rag-close',
             type: 'module'
         });
         new Worker(new URL('./components/sample-operator-screen/sample-operator-screen.behavior.worker.ts'
