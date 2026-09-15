@@ -7,6 +7,7 @@
     "prebuild": "npm run generatepath",
     "build": "ng build --configuration=production",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "generatepath": "generate-manifest-constants ../manifest.yaml"
   },
   "private": true,
@@ -53,8 +54,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ngx-build-plus": "^19.0.0",
-    "typescript": "5.9.3",
-    "jszip": "3.10.1"
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "domhandler": "5.0.3"
