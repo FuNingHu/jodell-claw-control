@@ -7,7 +7,7 @@ jodell-claw-control-backend/node_modules/
 dist/
 target/*.urcapx
 
-# Lock files are committed so SDK 0.20.49 installs stay reproducible
+package-lock.json
 
 # IDE
 .vscode/
